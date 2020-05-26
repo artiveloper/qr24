@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='XXXXX | QR24')"></head>
+
+<body>
+    <div th:replace="fragments/navbar"></div>
+
+    <div class="container mt-3">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-5">
+                <h3 class="mb-3">상호명</h3>
+                <p>
+                    <ion-icon name="location-outline"></ion-icon> 서울시 강남구 논현동 274-11 1층
+                </p>
+                <p>
+                    <ion-icon name="call-outline"></ion-icon> 010-1234-1234
+                </p>
+                <p>
+                    <ion-icon name="location-outline"></ion-icon> 홍길동
+                </p>
+                <p>
+                    <ion-icon name="document-text-outline"></ion-icon> 123-45-6789
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/script"></div>
+</body>
+</html>
