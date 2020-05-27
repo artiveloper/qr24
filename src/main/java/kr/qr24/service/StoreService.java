@@ -3,6 +3,7 @@ package kr.qr24.service;
 import kr.qr24.domain.Store;
 import kr.qr24.dto.RegisterStoreFormRequest;
 import kr.qr24.dto.StoreResponseDto;
+import kr.qr24.exception.StoreNotFound;
 import kr.qr24.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,12 @@ public class StoreService {
                 .stream()
                 .map(StoreResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public StoreResponseDto getStore(Long storeId) {
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(StoreNotFound::new);
+        return new StoreResponseDto(store);
     }
 
 }

@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h5 class="card-title" th:text="${store.name}">매장 이름</h5>
                         <p class="card-text" th:text="${store.roadAddress}">매장 도로명 주소</p>
-                        <a th:href="@{/stores/1}" class="stretched-link"></a>
+                        <a th:href="@{'/stores/' + ${store.id}}" class="stretched-link"></a>
                     </div>
                 </div>
             </div>

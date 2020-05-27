@@ -1,6 +1,7 @@
 package kr.qr24.controller;
 
 import kr.qr24.dto.RegisterStoreFormRequest;
+import kr.qr24.dto.StoreResponseDto;
 import kr.qr24.service.StoreService;
 import kr.qr24.valid.RegisterStoreFormValidator;
 import kr.qr24.valid.SignUpFormValidator;
@@ -35,7 +36,9 @@ public class StoreController {
     }
 
     @GetMapping("/stores/{storeId}")
-    public String storeDetailPage(@PathVariable Long storeId) {
+    public String storeDetailPage(@PathVariable Long storeId, Model model) {
+        StoreResponseDto store = storeService.getStore(storeId);
+        model.addAttribute("store", store);
         return "stores/detail";
     }
 

@@ -8,19 +8,33 @@
     <div class="container mt-3">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-5">
-                <h3 class="mb-3">상호명</h3>
-                <p>
-                    <ion-icon name="location-outline"></ion-icon> 서울시 강남구 논현동 274-11 1층
-                </p>
-                <p>
-                    <ion-icon name="call-outline"></ion-icon> 010-1234-1234
-                </p>
-                <p>
-                    <ion-icon name="location-outline"></ion-icon> 홍길동
-                </p>
-                <p>
-                    <ion-icon name="document-text-outline"></ion-icon> 123-45-6789
-                </p>
+                <h3 class="mb-3" th:text="${store.name}">상호명</h3>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>업종</td>
+                        <td>요식업</td>
+                    </tr>
+                    <tr>
+                        <td>주소</td>
+                        <td th:text="${store.roadAddress}">주소</td>
+                    </tr>
+                    <tr>
+                        <td>사업자번호</td>
+                        <td th:text="${store.businessNumber}">사업자번호</td>
+                    </tr>
+                    <tr>
+                        <td>담당자 성함</td>
+                        <td th:text="${store.managerName}">담당자 성함</td>
+                    </tr>
+                    <tr>
+                        <td>담당자 연락처</td>
+                        <td th:text="${store.managerPhoneNumber}">담당자 연락처</td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>
