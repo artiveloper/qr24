@@ -38,14 +38,14 @@
                     핸드폰 번호를 입력해주세요 :)
                 </div>
 
-                <form th:action="@{/}" th:method="post" th:object="${visitorFormRequest}">
+                <form th:action="@{'/stores/' + ${store.id} + '/visit'}" th:method="post" th:object="${visitorFormRequest}">
                     <div class="form-group">
                         <label for="inputPhoneNumber" class="text-black font-weight-bold">핸드폰 번호</label>
                         <input type="number" class="form-control text-black" th:field="*{phoneNumber}" id="inputPhoneNumber" placeholder="-없이 입력해주세요" required>
                         <small class="form-text text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">핸드폰 번호 입력에러</small>
                     </div>
 
-                    <button type="submit" class="mb-3 btn btn-block btn-primary" disabled>인증번호 요청</button>
+                    <!--<button type="submit" class="mb-3 btn btn-block btn-primary">인증번호 요청</button>-->
 
                     <div class="form-group">
                         <label for="inputConfirmNumber" class="text-black font-weight-bold">인증 번호</label>
@@ -53,7 +53,7 @@
                         <small class="form-text text-danger" th:if="${#fields.hasErrors('inputConfirmNumber')}" th:errors="*{inputConfirmNumber}">인증번호 입력에러</small>
                     </div>
 
-                    <button type="submit" class="btn btn-block btn-primary" disabled>동의하고 제출하기</button>
+                    <button type="submit" class="btn btn-block btn-primary">동의하고 제출하기</button>
                 </form>
             </div>
         </div>

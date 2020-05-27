@@ -5,7 +5,6 @@ import kr.qr24.dto.StoreResponseDto;
 import kr.qr24.dto.VisitorFormRequest;
 import kr.qr24.service.StoreService;
 import kr.qr24.valid.RegisterStoreFormValidator;
-import kr.qr24.valid.SignUpFormValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,5 +63,22 @@ public class StoreController {
         model.addAttribute("store", store);
         return "stores/visit";
     }
-    
+
+    /*
+        사용자가 QR코드를 스캔하여 접속한 페이지에서 핸드폰번호를 입력했을 때, 방문 로그를 쌓는다.
+     */
+    @PostMapping("/stores/{storeId}/visit")
+    public String visitStore(@Valid VisitorFormRequest visitorFormRequest, Errors errors) {
+        if (errors.hasErrors()) {
+            return "stores/visit";
+        }
+        System.out.println(visitorFormRequest);
+        return "redirect:/stores/visit-result";
+    }
+
+    @GetMapping("/stores/visit-result")
+    public String result() {
+        return "stores/visit-result";
+    }
+
 }
