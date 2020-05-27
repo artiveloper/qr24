@@ -2,6 +2,7 @@ package kr.qr24.controller;
 
 import kr.qr24.dto.RegisterStoreFormRequest;
 import kr.qr24.dto.StoreResponseDto;
+import kr.qr24.dto.VisitorFormRequest;
 import kr.qr24.service.StoreService;
 import kr.qr24.valid.RegisterStoreFormValidator;
 import kr.qr24.valid.SignUpFormValidator;
@@ -52,4 +53,16 @@ public class StoreController {
         return "redirect:/";
     }
 
+    /*
+        사용자가 QR코드를 스캔했을 때 보여지는 페이지
+        - 핸드폰 번호만 입력하여 방문 내역을 남긴다.
+     */
+    @GetMapping("/stores/{storeId}/visit")
+    public String visitStorePage(@PathVariable Long storeId, Model model) {
+        StoreResponseDto store = storeService.getStore(storeId);
+        model.addAttribute("visitorFormRequest", new VisitorFormRequest());
+        model.addAttribute("store", store);
+        return "stores/visit";
+    }
+    
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title=${store.name} + ' | QR24')"></head>
+
+<body>
+    <div class="container my-3">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-5">
+                <h3 class="mb-3" th:text="${store.name}">상호명</h3>
+
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>업종</td>
+                        <td>요식업</td>
+                    </tr>
+                    <tr>
+                        <td>주소</td>
+                        <td th:text="${store.roadAddress}">주소</td>
+                    </tr>
+                    <tr>
+                        <td>사업자번호</td>
+                        <td th:text="${store.businessNumber}">사업자번호</td>
+                    </tr>
+                    <tr>
+                        <td>담당자 성함</td>
+                        <td th:text="${store.managerName}">담당자 성함</td>
+                    </tr>
+                    <tr>
+                        <td>담당자 연락처</td>
+                        <td th:text="${store.managerPhoneNumber}">담당자 연락처</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-info" role="alert">
+                    위 정보와 동일한 매장에 방문하셨다면, <br/>
+                    핸드폰 번호를 입력해주세요 :)
+                </div>
+
+                <form th:action="@{/}" th:method="post" th:object="${visitorFormRequest}">
+                    <div class="form-group">
+                        <label for="inputPhoneNumber" class="text-black font-weight-bold">핸드폰 번호</label>
+                        <input type="number" class="form-control text-black" th:field="*{phoneNumber}" id="inputPhoneNumber" placeholder="-없이 입력해주세요" required>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">핸드폰 번호 입력에러</small>
+                    </div>
+
+                    <button type="submit" class="mb-3 btn btn-block btn-primary" disabled>인증번호 요청</button>
+
+                    <div class="form-group">
+                        <label for="inputConfirmNumber" class="text-black font-weight-bold">인증 번호</label>
+                        <input type="number" class="form-control text-black" th:field="*{inputConfirmNumber}" id="inputConfirmNumber" placeholder="인증번호 입력" value="">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('inputConfirmNumber')}" th:errors="*{inputConfirmNumber}">인증번호 입력에러</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-primary" disabled>동의하고 제출하기</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:replace="fragments/script"></div>
+
+</body>
+</html>
