@@ -34,11 +34,19 @@
                     </tr>
                     </tbody>
                 </table>
-
+                <div class="d-flex justify-content-center">
+                    <div id="qrcode"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div th:replace="fragments/script"></div>
+    <script th:src="@{/plugin/qrcode.min.js}"></script>
+    <script th:inline="javascript">
+        var storeId = "[[${store.id}]]";
+        new QRCode(document.getElementById("qrcode"), "http://localhost:8080/stores/" + storeId + "/visit");
+    </script>
+
 </body>
 </html>
