@@ -21,6 +21,7 @@
                     <div class="form-group">
                         <label for="name" class="text-black font-weight-bold">상호명</label>
                         <input type="text" class="form-control text-black" id="name" th:field="*{name}" placeholder="예) QR24시">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">상호명 입력오류</small>
                     </div>
                     <h6 class="font-weight-bold">주소</h6>
                     <div class="form-row">
@@ -34,15 +35,18 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="roadAddress" th:field="*{roadAddress}" placeholder="도로명주소">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('roadAddress')}" th:errors="*{roadAddress}">도로명주소 입력오류</small>
                         </div>
                         <div class="form-group col-md-6">
                             <input type="text" class="form-control" id="jibunAddress" th:field="*{jibunAddress}" placeholder="지번주소">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('jibunAddress')}" th:errors="*{jibunAddress}">지번주소 입력오류</small>
                         </div>
                     </div>
                     <span id="guide" style="color:#999;display:none"></span>
                     <div class="form-row">
                         <div class="form-group col-md-8">
                             <input type="text" class="form-control" id="detailAddress" th:field="*{detailAddress}" placeholder="상세주소">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('detailAddress')}" th:errors="*{detailAddress}">상세주소 입력오류</small>
                         </div>
                         <div class="form-group col-md-4">
                             <input type="text" class="form-control" id="extraAddress" th:field="*{extraAddress}" placeholder="참고항목">
@@ -51,14 +55,17 @@
                     <div class="form-group">
                         <label for="businessNumber" class="text-black font-weight-bold">사업자번호</label>
                         <input type="text" class="form-control text-black" id="businessNumber" th:field="*{businessNumber}" placeholder="예) 123-45-6789">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('businessNumber')}" th:errors="*{businessNumber}">사업자번호 입력오류</small>
                     </div>
                     <div class="form-group">
                         <label for="managerName" class="text-black font-weight-bold">담당자 성함</label>
                         <input type="text" class="form-control text-black" id="managerName" th:field="*{managerName}" placeholder="예) 홍길동">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('managerName')}" th:errors="*{managerName}">담당자 성함 입력오류</small>
                     </div>
                     <div class="form-group">
                         <label for=managerPhoneNumber class="text-black font-weight-bold">담당자 연락처</label>
                         <input type="number" class="form-control text-black" id="managerPhoneNumber" th:field="*{managerPhoneNumber}" placeholder="-를 제외하고 입력해주세요.">
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('managerPhoneNumber')}" th:errors="*{managerPhoneNumber}">담당자 연락처 입력오류</small>
                     </div>
 
                     <button type="submit" class="btn btn-block btn-primary">매장등록</button>
