@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Table(name = "USERS")
@@ -32,8 +34,8 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    // todo 스토어 연관관계 추가
-    // private List<Store> stores;
+    @OneToMany(mappedBy = "user")
+    private List<Store> stores = new ArrayList<>();
 
     public void generateEmailToken() {
         this.emailCheckToken = UUID.randomUUID().toString();
