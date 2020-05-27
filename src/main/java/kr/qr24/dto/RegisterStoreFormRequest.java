@@ -14,8 +14,6 @@ public class RegisterStoreFormRequest {
 
     private String jibunAddress;
 
-    private String addressDetail;
-
     private String detailAddress;
 
     private String extraAddress;
@@ -32,7 +30,6 @@ public class RegisterStoreFormRequest {
                 .postcode(this.postcode)
                 .roadAddress(this.roadAddress)
                 .jibunAddress(this.jibunAddress)
-                .addressDetail(this.addressDetail)
                 .detailAddress(this.detailAddress)
                 .extraAddress(this.extraAddress)
                 .businessNumber(this.businessNumber)
