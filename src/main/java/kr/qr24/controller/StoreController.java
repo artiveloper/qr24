@@ -1,8 +1,10 @@
 package kr.qr24.controller;
 
+import kr.qr24.dto.CategoryResponseDto;
 import kr.qr24.dto.RegisterStoreFormRequest;
 import kr.qr24.dto.StoreResponseDto;
 import kr.qr24.dto.VisitorFormRequest;
+import kr.qr24.service.CategoryService;
 import kr.qr24.service.StoreService;
 import kr.qr24.valid.RegisterStoreFormValidator;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class StoreController {
 
     private final StoreService storeService;
+    private final CategoryService categoryService;
     private final RegisterStoreFormValidator registerStoreFormValidator;
 
     @InitBinder("registerStoreFormRequest")
@@ -31,6 +35,8 @@ public class StoreController {
 
     @GetMapping("/stores")
     public String storeRegisterPage(Model model) {
+        List<CategoryResponseDto> categories = categoryService.getCategories();
+        model.addAttribute("categories", categories);
         model.addAttribute("registerStoreFormRequest", new RegisterStoreFormRequest());
         return "stores/register";
     }

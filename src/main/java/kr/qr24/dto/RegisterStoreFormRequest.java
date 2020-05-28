@@ -4,9 +4,13 @@ import kr.qr24.domain.Store;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class RegisterStoreFormRequest {
+
+    @NotNull(message = "카테고리를 선택해주세요")
+    private Long categoryId;
 
     @NotBlank(message = "매장 정보를 입력해주세요")
     private String name;
