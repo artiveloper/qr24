@@ -19,6 +19,7 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
 
+    @Transactional
     public Long registerStore(RegisterStoreFormRequest registerStoreFormRequest) {
         Store store = registerStoreFormRequest.toStoreEntity();
         storeRepository.save(store);
