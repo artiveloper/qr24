@@ -19,8 +19,6 @@ public class Store {
     @Column(name = "STORE_ID")
     private Long id;
 
-    // 카테고리
-
     private String name;
 
     private String postcode;
@@ -46,5 +44,16 @@ public class Store {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_ID")
+    private Category category;
+
+    /*
+        연관관계 메서드
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 }

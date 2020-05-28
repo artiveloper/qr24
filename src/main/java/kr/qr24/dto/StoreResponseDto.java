@@ -10,9 +10,9 @@ public class StoreResponseDto {
 
     private Long id;
 
-    // 카테고리
-
     private String name;
+
+    private String categoryName;
 
     private String postcode;
 
@@ -37,6 +37,7 @@ public class StoreResponseDto {
     public StoreResponseDto(Store store) {
         this.id = store.getId();
         this.name = store.getName();
+        this.categoryName = store.getCategory().getName();
         this.postcode = store.getPostcode();
         this.roadAddress = store.getRoadAddress();
         this.jibunAddress = store.getJibunAddress();

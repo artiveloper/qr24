@@ -14,4 +14,11 @@ public class StoreControllerAdvice {
         return "errors/404";
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = CategoryNotFound.class)
+    public String handleCategoryNotFound() {
+        return "errors/404";
+    }
+
+
 }
