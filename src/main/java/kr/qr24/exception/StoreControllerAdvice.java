@@ -20,5 +20,10 @@ public class StoreControllerAdvice {
         return "errors/404";
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = UserNotFound.class)
+    public String handleUserNotFound() {
+        return "errors/404";
+    }
 
 }

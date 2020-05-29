@@ -1,5 +1,6 @@
 package kr.qr24.controller;
 
+import kr.qr24.domain.CustomUser;
 import kr.qr24.dto.CategoryResponseDto;
 import kr.qr24.dto.RegisterStoreFormRequest;
 import kr.qr24.dto.StoreResponseDto;
@@ -8,6 +9,7 @@ import kr.qr24.service.CategoryService;
 import kr.qr24.service.StoreService;
 import kr.qr24.valid.RegisterStoreFormValidator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -48,13 +50,20 @@ public class StoreController {
         return "stores/detail";
     }
 
+    /*
+        매장 등록
+     */
     @PostMapping("/stores")
-    public String registerStore(@Valid RegisterStoreFormRequest registerStoreFormRequest, Errors errors) {
-        System.out.println(registerStoreFormRequest);
-        if(errors.hasErrors()){
+    public String registerStore(
+            @AuthenticationPrincipal CustomUser currentUser,
+            @Valid RegisterStoreFormRequest registerStoreFormRequest,
+            Errors errors
+    ) {
+        if (errors.hasErrors()) {
             return "stores/register";
         }
-        storeService.registerStore(registerStoreFormRequest);
+        Long userId = currentUser.getId();
+        storeService.registerStore(userId, registerStoreFormRequest);
         return "redirect:/";
     }
 

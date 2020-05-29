@@ -1,6 +1,7 @@
 package kr.qr24.domain;
 
 import lombok.*;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -54,6 +55,25 @@ public class Store {
      */
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /*
+        생성 메서드
+     */
+    public static Store createStore(User user, Category category) {
+        Store store = new Store();
+        store.setUser(user);
+        store.setCategory(category);
+        store.setCreatedAt(LocalDateTime.now());
+        return store;
     }
 
 }
