@@ -1,7 +1,6 @@
 package kr.qr24.valid;
 
-import kr.qr24.dto.RegisterStoreFormRequest;
-import kr.qr24.dto.SignUpFormRequest;
+import kr.qr24.dto.store.RegisterStoreFormRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

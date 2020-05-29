@@ -2,8 +2,8 @@ package kr.qr24.controller;
 
 import kr.qr24.domain.CustomUser;
 import kr.qr24.dto.CategoryResponseDto;
-import kr.qr24.dto.RegisterStoreFormRequest;
-import kr.qr24.dto.StoreResponseDto;
+import kr.qr24.dto.store.RegisterStoreFormRequest;
+import kr.qr24.dto.store.StoreResponseDto;
 import kr.qr24.dto.VisitorFormRequest;
 import kr.qr24.service.CategoryService;
 import kr.qr24.service.StoreService;

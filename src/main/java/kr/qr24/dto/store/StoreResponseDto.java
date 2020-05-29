@@ -1,4 +1,4 @@
-package kr.qr24.dto;
+package kr.qr24.dto.store;
 
 import kr.qr24.domain.Store;
 import lombok.Data;
@@ -20,8 +20,6 @@ public class StoreResponseDto {
 
     private String jibunAddress;
 
-    private String addressDetail;
-
     private String detailAddress;
 
     private String extraAddress;
@@ -41,7 +39,6 @@ public class StoreResponseDto {
         this.postcode = store.getPostcode();
         this.roadAddress = store.getRoadAddress();
         this.jibunAddress = store.getJibunAddress();
-        this.addressDetail = store.getAddressDetail();
         this.detailAddress = store.getDetailAddress();
         this.extraAddress = store.getExtraAddress();
         this.businessNumber = store.getBusinessNumber();

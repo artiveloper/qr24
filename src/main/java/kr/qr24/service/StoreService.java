@@ -3,8 +3,9 @@ package kr.qr24.service;
 import kr.qr24.domain.Category;
 import kr.qr24.domain.Store;
 import kr.qr24.domain.User;
-import kr.qr24.dto.RegisterStoreFormRequest;
-import kr.qr24.dto.StoreResponseDto;
+import kr.qr24.dto.store.RegisterStoreFormRequest;
+import kr.qr24.dto.store.StoreListResponse;
+import kr.qr24.dto.store.StoreResponseDto;
 import kr.qr24.exception.CategoryNotFound;
 import kr.qr24.exception.StoreNotFound;
 import kr.qr24.exception.UserNotFound;
@@ -15,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,10 +43,10 @@ public class StoreService {
         return store.getId();
     }
 
-    public List<StoreResponseDto> getStores(Long userId) {
+    public List<StoreListResponse> getStores(Long userId) {
         return storeRepository.findStoresByUserId(userId)
                 .stream()
-                .map(StoreResponseDto::new)
+                .map(StoreListResponse::new)
                 .collect(Collectors.toList());
     }
 

@@ -1,7 +1,8 @@
 package kr.qr24.controller;
 
 import kr.qr24.domain.CustomUser;
-import kr.qr24.dto.StoreResponseDto;
+import kr.qr24.dto.store.StoreListResponse;
+import kr.qr24.dto.store.StoreResponseDto;
 import kr.qr24.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +23,7 @@ public class WelcomeController {
         if (currentUser == null) {
             return "users/sign-in";
         }
-        List<StoreResponseDto> stores = storeService.getStores(currentUser.getId());
+        List<StoreListResponse> stores = storeService.getStores(currentUser.getId());
         model.addAttribute("stores", stores);
         return "index";
     }

@@ -1,4 +1,4 @@
-package kr.qr24.dto;
+package kr.qr24.dto.store;
 
 import kr.qr24.domain.Store;
 import lombok.Data;
