@@ -57,9 +57,12 @@ public class StoreController {
     public String registerStore(
             @AuthenticationPrincipal CustomUser currentUser,
             @Valid RegisterStoreFormRequest registerStoreFormRequest,
-            Errors errors
+            Errors errors,
+            Model model
     ) {
         if (errors.hasErrors()) {
+            List<CategoryResponseDto> categories = categoryService.getCategories();
+            model.addAttribute("categories", categories);
             return "stores/register";
         }
         Long userId = currentUser.getId();
