@@ -8,4 +8,6 @@ public interface StoreSupportRepository {
 
     List<Store> findStoresByUserId(Long userId);
 
+    Store findStoreWithCategory(Long storeId);
+
 }

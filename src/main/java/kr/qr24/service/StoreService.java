@@ -51,8 +51,8 @@ public class StoreService {
     }
 
     public StoreResponseDto getStore(Long storeId) {
-        Store store = storeRepository.findById(storeId)
-                .orElseThrow(StoreNotFound::new);
+        Store store = storeRepository.findStoreWithCategory(storeId);
+                //.orElseThrow(StoreNotFound::new);
         return new StoreResponseDto(store);
     }
 
