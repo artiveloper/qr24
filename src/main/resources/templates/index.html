@@ -7,7 +7,7 @@
 
     <div class="container mt-3">
 
-        <h5 class="font-weight-bold">매장 목록</h5>
+        <h5 class="font-weight-bold">매장 목록 Ver1</h5>
 
         <div th:if="${#lists.isEmpty(stores)}">
             <div class="alert alert-danger" role="alert">
@@ -25,6 +25,39 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div>
+            <h5 class="font-weight-bold">매장 목록 Ver2</h5>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">NO</th>
+                        <th scope="col">매장 이름</th>
+                        <th scope="col">주소(도로명)</th>
+                        <th scope="col">매장 관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>
+                            <button class="btn btn-sm btn-info">
+                                상세정보
+                            </button>
+                            <button class="btn btn-sm btn-primary">
+                                수정
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                삭제
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>
