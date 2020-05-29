@@ -7,13 +7,12 @@ import kr.qr24.dto.StoreResponseDto;
 import kr.qr24.exception.CategoryNotFound;
 import kr.qr24.exception.StoreNotFound;
 import kr.qr24.repository.CategoryRepository;
-import kr.qr24.repository.StoreRepository;
+import kr.qr24.repository.store.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,7 +36,7 @@ public class StoreService {
     }
 
     public List<StoreResponseDto> getStores(Long userId) {
-        return storeRepository.findAll()
+        return storeRepository.findStoresByUserId(userId)
                 .stream()
                 .map(StoreResponseDto::new)
                 .collect(Collectors.toList());
