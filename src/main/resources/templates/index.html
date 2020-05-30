@@ -5,9 +5,8 @@
 <body>
     <div th:replace="fragments/navbar"></div>
 
-    <div class="container mt-3">
-
-        <h5 class="font-weight-bold">매장 목록 Ver1</h5>
+    <div class="container my-4">
+        <h5 class="my-3 font-weight-bold">QR코드 목록</h5>
 
         <div th:if="${#lists.isEmpty(stores)}">
             <div class="alert alert-danger" role="alert">
@@ -15,46 +14,34 @@
             </div>
         </div>
 
-        <div class="row" th:if="${not #lists.isEmpty(stores)}">
-            <div class="col-lg-4 mb-3" th:each="store : ${stores}">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${store.name}">매장 이름</h5>
-                        <p class="card-text" th:text="${store.roadAddress}">매장 도로명 주소</p>
-                        <a th:href="@{'/stores/' + ${store.id}}" class="stretched-link"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-5">
-            <h5 class="font-weight-bold">매장 목록 Ver2</h5>
-
-            <div th:if="${#lists.isEmpty(stores)}">
-                <div class="alert alert-danger" role="alert">
-                    현재 등록된 매장이 없습니다. 새로운 매장을 등록해주세요 :)
-                </div>
-            </div>
-
-            <table class="table">
-                <thead>
+        <table class="table">
+            <thead>
                 <tr>
                     <th scope="col">NO</th>
                     <th scope="col">매장 이름</th>
                     <th scope= "col">주소(도로명)</th>
+                    <th scope= "col">관리</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <tr th:each="store : ${stores}">
                     <th scope="row" th:text="${store.id}">NO</th>
                     <td th:text="${store.name}">매장 이름</td>
                     <td th:text="${store.roadAddress}">주소(도로명)</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary">
+                            수정
+                        </button>
+                        <button class="btn btn-sm btn-danger">
+                            삭제
+                        </button>
+                        <button class="btn btn-sm btn-info">
+                            QR코드출력
+                        </button>
+                    </td>
                 </tr>
-                </tbody>
-            </table>
-
-        </div>
-
+            </tbody>
+        </table>
     </div>
 
     <div th:replace="fragments/script"></div>
