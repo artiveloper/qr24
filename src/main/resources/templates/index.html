@@ -27,7 +27,7 @@
                 <tr>
                     <th scope="col">NO</th>
                     <th scope="col">매장 이름</th>
-                    <th scope="col">주소(도로명) 또는 차량번호</th>
+                    <th scope="col" th:text="${qrCodes[0].qrCodeTypeId == 2 ? '차량 번호' : '주소(도로명)'}">주소(도로명)/차량번호</th>
                     <th scope="col">매장 관리</th>
                 </tr>
                 </thead>
@@ -35,7 +35,7 @@
                 <tr th:each="qrCode : ${qrCodes}">
                     <th scope="row">1</th>
                     <td th:text="${qrCode.name}">매장 이름</td>
-                    <td th:text="${qrCode.roadAddress}">주소(도로명)</td>
+                    <td th:text="${qrCodes[0].qrCodeTypeId == 2 ? qrCode.carNumber : qrCode.roadAddress}">주소(도로명)</td>
                     <td>
                         <a class="btn btn-sm btn-info" th:href="@{'/qrcodes/' + ${qrCode.id}}" role="button">QR코드 바로보기</a>
                         <a class="btn btn-sm btn-primary" href="#" role="button">수정</a>

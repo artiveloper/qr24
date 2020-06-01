@@ -11,8 +11,8 @@
 
             <form th:action="@{/qrcodes}" th:object="${registerQrCodeFormRequest}" th:method="post">
                 <div class="form-group">
-                    <label for="inputQrCodeType" class="text-black font-weight-bold">QR코드 타입</label>
-                    <select id="inputQrCodeType" class="form-control" th:field="*{qrCodeTypeId}">
+                    <label for="selectQrCodeType" class="text-black font-weight-bold">QR코드 타입</label>
+                    <select id="selectQrCodeType" class="form-control" th:field="*{qrCodeTypeId}" onchange="handleSelectCodeType(this.value)">
                         <option value="">QR코드 타입 선택</option>
                         <option th:each="qrCodeType : ${qrCodeTypes}"
                                 th:value="${qrCodeType.id}"
@@ -34,7 +34,7 @@
                         <input type="text" class="form-control" id="postcode" th:field="*{postcode}" placeholder="우편번호" readonly tabindex="-1">
                     </div>
                     <div class="form-group col-8 col-md-8">
-                        <button type="button" class="btn btn-dark text-white" onclick="sample6_execDaumPostcode()">우편번호 찾기</button>
+                        <button type="button" class="btn btn-dark text-white" onclick="handleInputPostcode()">우편번호 찾기</button>
                     </div>
                 </div>
                 <div class="form-row">
@@ -64,16 +64,16 @@
                                placeholder="참고항목" readonly tabindex="-1">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="inputCarNumberContainer">
                     <label for="carNumber" class="text-black font-weight-bold">차량번호</label>
-                    <input type="text" class="form-control text-black" id="carNumber"
+                    <input type="text" class="form-control text-black" id="carNumber" th:field="*{carNumber}"
                            placeholder="예) 123가 3456">
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('carNumber')}"
+                           th:errors="*{carNumber}">차량번호 입력오류</small>
                     <small class="form-text text-info">
                         * 회사에서 보유하신 차량이 많은 경우, 차량별 QR코드를 일괄 등록해드립니다. <br>
                         담당자 연락처 : 070-7664-2221
                     </small>
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('carNumber')}"
-                           th:errors="*{carNumber}">차량번호 입력오류</small>
                 </div>
                 <div class="form-group">
                     <label for="businessNumber" class="text-black font-weight-bold">사업자번호</label>
@@ -109,7 +109,24 @@
 <div th:replace="fragments/script"></div>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    function sample6_execDaumPostcode() {
+    let selectQrCodeType = document.getElementById('selectQrCodeType');
+    let selectedType = selectQrCodeType.options[selectQrCodeType.selectedIndex].value;
+
+    if (selectedType == 2) {
+        let carNumberContainer = document.getElementById('inputCarNumberContainer');
+        carNumberContainer.style.display = "block";
+    }
+
+    function handleSelectCodeType(selectedValue) {
+        let carNumberContainer = document.getElementById('inputCarNumberContainer');
+        if (selectedValue == 2) {
+            carNumberContainer.style.display = "block";
+        } else {
+            carNumberContainer.style.display = "none";
+        }
+    }
+
+    function handleInputPostcode() {
         new daum.Postcode({
             oncomplete: function (data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.

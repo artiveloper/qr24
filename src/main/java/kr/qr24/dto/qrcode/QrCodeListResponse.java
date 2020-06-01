@@ -10,6 +10,10 @@ public class QrCodeListResponse {
 
     private String name;
 
+    private Long qrCodeTypeId;
+
+    private String carNumber;
+
     private String roadAddress;
 
     private String jibunAddress;
@@ -18,13 +22,15 @@ public class QrCodeListResponse {
 
     private String extraAddress;
 
-    public QrCodeListResponse(QrCode QRCode) {
-        this.id = QRCode.getId();
-        this.name = QRCode.getName();
-        this.roadAddress = QRCode.getRoadAddress();
-        this.jibunAddress = QRCode.getJibunAddress();
-        this.detailAddress = QRCode.getDetailAddress();
-        this.extraAddress = QRCode.getExtraAddress();
+    public QrCodeListResponse(QrCode qrCode) {
+        this.id = qrCode.getId();
+        this.name = qrCode.getName();
+        this.qrCodeTypeId = qrCode.getQrCodeType().getId();
+        this.carNumber = qrCode.getCarNumber();
+        this.roadAddress = qrCode.getRoadAddress();
+        this.jibunAddress = qrCode.getJibunAddress();
+        this.detailAddress = qrCode.getDetailAddress();
+        this.extraAddress = qrCode.getExtraAddress();
     }
 
 }

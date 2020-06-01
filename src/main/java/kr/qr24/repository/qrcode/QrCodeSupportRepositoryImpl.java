@@ -15,7 +15,10 @@ public class QrCodeSupportRepositoryImpl extends QuerydslRepositorySupport imple
 
     public List<QrCode> findQrCodesByUserId(Long userId) {
         final QQrCode qrCode = QQrCode.qrCode;
+        final QQrCodeType qrCodeType = QQrCodeType.qrCodeType;
         return from(qrCode)
+                .leftJoin(qrCode.qrCodeType, qrCodeType)
+                .fetchJoin()
                 .where(qrCode.user.id.eq(userId))
                 .fetch();
     }

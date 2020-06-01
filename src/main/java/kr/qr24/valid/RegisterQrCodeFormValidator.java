@@ -17,9 +17,18 @@ public class RegisterQrCodeFormValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        // todo 등록된 사업자 등록증인지 확인.
+        RegisterQrCodeFormRequest registerQrCodeFormRequest = (RegisterQrCodeFormRequest) o;
 
-        // todo 차량용 QR코드 일 경우, 차량 번호 확인
+        Long qrCodeTypeId = registerQrCodeFormRequest.getQrCodeTypeId();
+
+        // 차량용 QR코드 일 경우, 차량 번호 확인
+        if (qrCodeTypeId == 2) {
+            if (registerQrCodeFormRequest.getCarNumber() == null) {
+                errors.rejectValue("carNumber", "invalid.carNumber", new Object[]{registerQrCodeFormRequest.getCarNumber()}, "차량 번호를 입력해주세요");
+            }
+        }
+
+        // todo 등록된 사업자 등록증인지 확인.
     }
 
 }

@@ -12,7 +12,9 @@ public class QrCodeResponseDto {
 
     private String name;
 
-    private String categoryName;
+    private Long qrCodeTypeId;
+
+    private String qrCodeTypeName;
 
     private String postcode;
 
@@ -35,7 +37,8 @@ public class QrCodeResponseDto {
     public QrCodeResponseDto(QrCode QRCode) {
         this.id = QRCode.getId();
         this.name = QRCode.getName();
-        this.categoryName = QRCode.getQrCodeType().getName();
+        this.qrCodeTypeId = QRCode.getQrCodeType().getId();
+        this.qrCodeTypeName = QRCode.getQrCodeType().getName();
         this.postcode = QRCode.getPostcode();
         this.roadAddress = QRCode.getRoadAddress();
         this.jibunAddress = QRCode.getJibunAddress();
