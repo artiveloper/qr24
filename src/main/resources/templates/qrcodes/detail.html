@@ -8,29 +8,29 @@
     <div class="container mt-3">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-5">
-                <h3 class="mb-3" th:text="${store.name}">상호명</h3>
+                <h3 class="mb-3" th:text="${qrCode.name}">상호명</h3>
 
                 <table class="table">
                     <tbody>
                     <tr>
-                        <td>업종</td>
-                        <td th:text="${store.categoryName}">업종</td>
+                        <td>QR코드 종류</td>
+                        <td th:text="${qrCode.categoryName}">QR코드 종류</td>
                     </tr>
                     <tr>
                         <td>주소</td>
-                        <td th:text="${store.roadAddress}">주소</td>
+                        <td th:text="${qrCode.roadAddress}">주소</td>
                     </tr>
                     <tr>
                         <td>사업자번호</td>
-                        <td th:text="${store.businessNumber}">사업자번호</td>
+                        <td th:text="${qrCode.businessNumber}">사업자번호</td>
                     </tr>
                     <tr>
                         <td>담당자 성함</td>
-                        <td th:text="${store.managerName}">담당자 성함</td>
+                        <td th:text="${qrCode.managerName}">담당자 성함</td>
                     </tr>
                     <tr>
                         <td>담당자 연락처</td>
-                        <td th:text="${store.managerPhoneNumber}">담당자 연락처</td>
+                        <td th:text="${qrCode.managerPhoneNumber}">담당자 연락처</td>
                     </tr>
                     </tbody>
                 </table>
@@ -44,8 +44,8 @@
     <div th:replace="fragments/script"></div>
     <script th:src="@{/plugin/qrcode.min.js}"></script>
     <script th:inline="javascript">
-        var storeId = "[[${store.id}]]";
-        new QRCode(document.getElementById("qrcode"), "http://localhost:8080/stores/" + storeId + "/visit");
+        var qrCodeId = "[[${qrCode.id}]]";
+        new QRCode(document.getElementById("qrcode"), "http://localhost:8080/qrcodes/" + qrCodeId + "/visit");
     </script>
 
 </body>

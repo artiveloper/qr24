@@ -7,16 +7,15 @@
 
     <div class="container mt-3">
 
-        <div th:if="${#lists.isEmpty(stores)}">
+        <div th:if="${#lists.isEmpty(qrCodes)}">
             <div class="alert alert-danger" role="alert">
                 현재 등록된 QR코드가 없습니다. 새로운 QR코드를 만들어주세요 :)
             </div>
         </div>
 
-        <div th:if="${not #lists.isEmpty(stores)}">
+        <div th:if="${not #lists.isEmpty(qrCodes)}">
 
             <div class="alert alert-info">
-                등록하신 QR코드 목록입니다.<br>
                 관리하는 QR코드가 다수일 경우 QR코드 만들기를 클릭 후 추가해주세요.<br>
                 고객분들의 방문 기록은 28일 후, 자동 삭제되며 방문 기록은 질병관리본부에서만 관리합니다.
             </div>
@@ -33,12 +32,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="store : ${stores}">
+                <tr th:each="qrCode : ${qrCodes}">
                     <th scope="row">1</th>
-                    <td th:text="${store.name}">매장 이름</td>
-                    <td th:text="${store.roadAddress}">주소(도로명)</td>
+                    <td th:text="${qrCode.name}">매장 이름</td>
+                    <td th:text="${qrCode.roadAddress}">주소(도로명)</td>
                     <td>
-                        <a class="btn btn-sm btn-info" th:href="@{'/stores/' + ${store.id}}" role="button">QR코드 바로보기</a>
+                        <a class="btn btn-sm btn-info" th:href="@{'/qrcodes/' + ${qrCode.id}}" role="button">QR코드 바로보기</a>
                         <a class="btn btn-sm btn-primary" href="#" role="button">수정</a>
                         <a class="btn btn-sm btn-danger" href="#" role="button">삭제</a>
                     </td>

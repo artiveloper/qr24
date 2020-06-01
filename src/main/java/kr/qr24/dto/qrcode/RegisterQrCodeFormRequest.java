@@ -1,16 +1,16 @@
-package kr.qr24.dto.store;
+package kr.qr24.dto.qrcode;
 
-import kr.qr24.domain.Store;
+import kr.qr24.domain.QrCode;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class RegisterStoreFormRequest {
+public class RegisterQrCodeFormRequest {
 
     @NotNull(message = "카테고리를 선택해주세요")
-    private Long categoryId;
+    private Long qrCodeTypeId;
 
     @NotBlank(message = "매장 정보를 입력해주세요")
     private String name;
@@ -28,6 +28,8 @@ public class RegisterStoreFormRequest {
 
     private String extraAddress;
 
+    private String carNumber;
+
     @NotBlank(message = "사업자번호를 입력해주세요")
     private String businessNumber;
 
@@ -37,14 +39,15 @@ public class RegisterStoreFormRequest {
     @NotBlank(message = "담당자 연락처를 입력해주세요")
     private String managerPhoneNumber;
 
-    public Store toStoreEntity() {
-        return Store.builder()
+    public QrCode toStoreEntity() {
+        return QrCode.builder()
                 .name(this.name)
                 .postcode(this.postcode)
                 .roadAddress(this.roadAddress)
                 .jibunAddress(this.jibunAddress)
                 .detailAddress(this.detailAddress)
                 .extraAddress(this.extraAddress)
+                .carNumber(this.carNumber)
                 .businessNumber(this.businessNumber)
                 .managerName(this.managerName)
                 .managerPhoneNumber(managerPhoneNumber)

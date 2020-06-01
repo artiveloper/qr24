@@ -24,8 +24,8 @@
     <div th:replace="fragments/script"></div>
     <script th:src="@{/plugin/qrcode.min.js}"></script>
     <script th:inline="javascript">
-        var storeId = "[[${store.id}]]";
-        new QRCode(document.getElementById("qrcode"), "http://localhost:8080/stores/" + storeId + "/visit");
+        var qrCodeId = "[[${qrCode.id}]]";
+        new QRCode(document.getElementById("qrcode"), "http://localhost:8080/qrcodes/" + qrCodeId + "/visit");
     </script>
 
 </body>

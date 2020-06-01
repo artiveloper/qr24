@@ -4,18 +4,18 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Table(name = "CATEGORIES")
+@Table(name = "QRCODE_TYPES")
 @Entity
 @Getter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Category {
+public class QrCodeType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CATEGORY_ID")
+    @Column(name = "QRCODE_TYPE_ID")
     private Long id;
 
     private String name;

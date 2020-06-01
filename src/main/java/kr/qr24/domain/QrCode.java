@@ -1,7 +1,6 @@
 package kr.qr24.domain;
 
 import lombok.*;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,11 +12,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Store {
+public class QrCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "STORE_ID")
+    @Column(name = "QRCODE_ID")
     private Long id;
 
     private String name;
@@ -34,6 +33,8 @@ public class Store {
 
     private String extraAddress;
 
+    private String carNumber;
+
     private String businessNumber;
 
     private String managerName;
@@ -47,14 +48,14 @@ public class Store {
     private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_ID")
-    private Category category;
+    @JoinColumn(name = "QRCODE_TYPE_ID")
+    private QrCodeType qrCodeType;
 
     /*
         연관관계 메서드
      */
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setQrCodeType(QrCodeType qrCodeType) {
+        this.qrCodeType = qrCodeType;
     }
 
     public void setUser(User user) {
@@ -68,12 +69,12 @@ public class Store {
     /*
         생성 메서드
      */
-    public static Store createStore(User user, Category category) {
-        Store store = new Store();
-        store.setUser(user);
-        store.setCategory(category);
-        store.setCreatedAt(LocalDateTime.now());
-        return store;
+    public static QrCode createQrCode(User user, QrCodeType qrCodeType) {
+        QrCode QRCode = new QrCode();
+        QRCode.setUser(user);
+        QRCode.setQrCodeType(qrCodeType);
+        QRCode.setCreatedAt(LocalDateTime.now());
+        return QRCode;
     }
 
 }

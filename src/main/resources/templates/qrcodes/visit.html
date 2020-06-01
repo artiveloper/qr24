@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head(title=${store.name} + ' | QR24')"></head>
+<head th:replace="fragments/head :: head(title=${qrCode.name} + ' | QR24')"></head>
 
 <body>
     <div class="container my-3">
@@ -8,7 +8,7 @@
             <div class="col-lg-5">
                 <h2 class="mb-3">QR코드 방문기록 참여하기</h2>
 
-                <h3 class="mb-3" th:text="${store.name}">상호명(회사명) or 차량번호</h3>
+                <h3 class="mb-3" th:text="${qrCode.name}">상호명(회사명) or 차량번호</h3>
 
                 <p class="alert alert-info">
                     여러분의 참여로 COVID19 및 바이러스 확산에 빠른 대처와 예방이 가능합니다. <br><br>
@@ -22,7 +22,7 @@
                     핸드폰 번호 입력, 인증번호 입력 후 참여하기 버튼을 클릭해주세요.
                 </p>
 
-                <form th:action="@{'/stores/' + ${store.id} + '/visit'}" th:method="post" th:object="${visitorFormRequest}">
+                <form th:action="@{'/stores/' + ${qrCode.id} + '/visit'}" th:method="post" th:object="${visitorFormRequest}">
                     <div class="form-group">
                         <label for="inputPhoneNumber" class="text-black font-weight-bold">핸드폰 번호</label>
                         <input type="number" class="form-control text-black" th:field="*{phoneNumber}" id="inputPhoneNumber" placeholder="-없이 입력해주세요" required>

@@ -35,7 +35,7 @@ public class User {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "user")
-    private List<Store> stores = new ArrayList<>();
+    private List<QrCode> QrCodes = new ArrayList<>();
 
     public void generateEmailToken() {
         this.emailCheckToken = UUID.randomUUID().toString();
