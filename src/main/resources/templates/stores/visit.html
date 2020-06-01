@@ -6,37 +6,21 @@
     <div class="container my-3">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-5">
-                <h3 class="mb-3" th:text="${store.name}">상호명</h3>
+                <h2 class="mb-3">QR코드 방문기록 참여하기</h2>
 
-                <table class="table">
-                    <tbody>
-                    <tr>
-                        <td>업종</td>
-                        <td>요식업</td>
-                    </tr>
-                    <tr>
-                        <td>주소</td>
-                        <td th:text="${store.roadAddress}">주소</td>
-                    </tr>
-                    <tr>
-                        <td>사업자번호</td>
-                        <td th:text="${store.businessNumber}">사업자번호</td>
-                    </tr>
-                    <tr>
-                        <td>담당자 성함</td>
-                        <td th:text="${store.managerName}">담당자 성함</td>
-                    </tr>
-                    <tr>
-                        <td>담당자 연락처</td>
-                        <td th:text="${store.managerPhoneNumber}">담당자 연락처</td>
-                    </tr>
-                    </tbody>
-                </table>
+                <h3 class="mb-3" th:text="${store.name}">상호명(회사명) or 차량번호</h3>
 
-                <div class="alert alert-info" role="alert">
-                    위 정보와 동일한 매장에 방문하셨다면, <br/>
-                    핸드폰 번호를 입력해주세요 :)
-                </div>
+                <p class="alert alert-info">
+                    여러분의 참여로 COVID19 및 바이러스 확산에 빠른 대처와 예방이 가능합니다. <br><br>
+
+                    방문 기록과 핸드폰 번호는 28일 후 자동 삭제됩니다. <br>
+                    기록된 정보는 질병관리본부에서만 관리하며, 방문한 매장 관계자는 접근 불가합니다. <br>
+                    고객님의 핸드폰번호 정보만 필요하며, 어떠한 다른 정보를 요구하지 않습니다. <br><br>
+
+                    여러분의 참여로 사랑하는 가족과 친구를 보호할 수 있습니다! <br><br>
+
+                    핸드폰 번호 입력, 인증번호 입력 후 참여하기 버튼을 클릭해주세요.
+                </p>
 
                 <form th:action="@{'/stores/' + ${store.id} + '/visit'}" th:method="post" th:object="${visitorFormRequest}">
                     <div class="form-group">
