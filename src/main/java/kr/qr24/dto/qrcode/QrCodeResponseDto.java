@@ -16,6 +16,8 @@ public class QrCodeResponseDto {
 
     private String qrCodeTypeName;
 
+    private String carNumber;
+
     private String postcode;
 
     private String roadAddress;
@@ -34,20 +36,21 @@ public class QrCodeResponseDto {
 
     private LocalDateTime createdAt;
 
-    public QrCodeResponseDto(QrCode QRCode) {
-        this.id = QRCode.getId();
-        this.name = QRCode.getName();
-        this.qrCodeTypeId = QRCode.getQrCodeType().getId();
-        this.qrCodeTypeName = QRCode.getQrCodeType().getName();
-        this.postcode = QRCode.getPostcode();
-        this.roadAddress = QRCode.getRoadAddress();
-        this.jibunAddress = QRCode.getJibunAddress();
-        this.detailAddress = QRCode.getDetailAddress();
-        this.extraAddress = QRCode.getExtraAddress();
-        this.businessNumber = QRCode.getBusinessNumber();
-        this.managerName = QRCode.getManagerName();
-        this.managerPhoneNumber = QRCode.getManagerPhoneNumber();
-        this.createdAt = QRCode.getCreatedAt();
+    public QrCodeResponseDto(QrCode qrCode) {
+        this.id = qrCode.getId();
+        this.name = qrCode.getName();
+        this.qrCodeTypeId = qrCode.getQrCodeType().getId();
+        this.qrCodeTypeName = qrCode.getQrCodeType().getName();
+        this.carNumber = qrCode.getCarNumber();
+        this.postcode = qrCode.getPostcode();
+        this.roadAddress = qrCode.getRoadAddress();
+        this.jibunAddress = qrCode.getJibunAddress();
+        this.detailAddress = qrCode.getDetailAddress();
+        this.extraAddress = qrCode.getExtraAddress();
+        this.businessNumber = qrCode.getBusinessNumber();
+        this.managerName = qrCode.getManagerName();
+        this.managerPhoneNumber = qrCode.getManagerPhoneNumber();
+        this.createdAt = qrCode.getCreatedAt();
     }
 
 }

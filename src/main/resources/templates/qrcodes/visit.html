@@ -8,7 +8,10 @@
             <div class="col-lg-5">
                 <h2 class="mb-3">QR코드 방문기록 참여하기</h2>
 
-                <h3 class="mb-3" th:text="${qrCode.name}">상호명(회사명) or 차량번호</h3>
+                <h3 class="mb-3"
+                    th:text="${qrCode.qrCodeTypeId == 2 ? qrCode.name : qrCode.carNumber}">
+                    상호명(회사명) or 차량번호
+                </h3>
 
                 <p class="alert alert-info">
                     여러분의 참여로 COVID19 및 바이러스 확산에 빠른 대처와 예방이 가능합니다. <br><br>

@@ -14,7 +14,11 @@
                     <tbody>
                     <tr>
                         <td>QR코드 종류</td>
-                        <td th:text="${qrCode.qrCodeTypeId}">QR코드 종류</td>
+                        <td th:text="${qrCode.qrCodeTypeName}">QR코드 종류</td>
+                    </tr>
+                    <tr th:if="${qrCode.qrCodeTypeId == 2}">
+                        <td>차량 번호</td>
+                        <td th:text="${qrCode.carNumber}">차량 번호</td>
                     </tr>
                     <tr>
                         <td>주소</td>
