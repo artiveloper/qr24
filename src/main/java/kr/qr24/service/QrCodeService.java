@@ -3,11 +3,9 @@ package kr.qr24.service;
 import kr.qr24.domain.QrCodeType;
 import kr.qr24.domain.QrCode;
 import kr.qr24.domain.User;
-import kr.qr24.dto.qrcode.QrCodeTypeResponseDto;
-import kr.qr24.dto.qrcode.RegisterQrCodeFormRequest;
-import kr.qr24.dto.qrcode.QrCodeListResponse;
-import kr.qr24.dto.qrcode.QrCodeResponseDto;
+import kr.qr24.dto.qrcode.*;
 import kr.qr24.exception.CategoryNotFound;
+import kr.qr24.exception.StoreNotFound;
 import kr.qr24.exception.UserNotFound;
 import kr.qr24.repository.qrcode.QrTypeRepository;
 import kr.qr24.repository.UserRepository;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,6 +60,18 @@ public class QrCodeService {
         QrCode QRCode = qrCodeRepository.findQrCodeWithType(storeId);
                 //.orElseThrow(StoreNotFound::new);
         return new QrCodeResponseDto(QRCode);
+    }
+
+    public EditQrCodeForm getQrCodeForEdit(Long storeId) {
+        QrCode QRCode = qrCodeRepository.findQrCodeWithType(storeId);
+        return new EditQrCodeForm(QRCode);
+    }
+
+    @Transactional
+    public Long updateQrCode(Long id, EditQrCodeForm editQrCodeForm) {
+        QrCode qrCode = qrCodeRepository.findById(id).orElseThrow(StoreNotFound::new);
+        qrCode.update(editQrCodeForm);
+        return qrCode.getId();
     }
 
 }

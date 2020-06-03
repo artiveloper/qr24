@@ -1,6 +1,7 @@
 package kr.qr24.controller;
 
 import kr.qr24.domain.CustomUser;
+import kr.qr24.dto.qrcode.EditQrCodeForm;
 import kr.qr24.dto.qrcode.QrCodeTypeResponseDto;
 import kr.qr24.dto.qrcode.RegisterQrCodeFormRequest;
 import kr.qr24.dto.qrcode.QrCodeResponseDto;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -41,11 +43,24 @@ public class QrCodeController {
         return "qrcodes/register";
     }
 
-    @GetMapping("/qrcodes/{qrCodeId}")
-    public String storeDetailPage(@PathVariable Long qrCodeId, Model model) {
-        QrCodeResponseDto qrCode = qrCodeService.getQrCode(qrCodeId);
-        model.addAttribute("qrCode", qrCode);
-        return "qrcodes/detail";
+    /*
+        QR코드 정보 수정 페이지
+     */
+    @GetMapping("/qrcodes/{qrCodeId}/edit")
+    public String editQrCodePage(@PathVariable Long qrCodeId, Model model) {
+        EditQrCodeForm editQrCodeForm = qrCodeService.getQrCodeForEdit(qrCodeId);
+        model.addAttribute("editQrCodeForm", editQrCodeForm);
+        return "qrcodes/edit";
+    }
+
+    /*
+        QR코드 정보 수정
+     */
+    @PostMapping("/qrcodes/{qrCodeId}/edit")
+    public String editQrCode(@PathVariable Long qrCodeId, EditQrCodeForm editQrCodeForm, RedirectAttributes redirectAttributes) {
+        Long updatedQrCodeId = qrCodeService.updateQrCode(qrCodeId, editQrCodeForm);
+        redirectAttributes.addFlashAttribute("updated", true);
+        return "redirect:/qrcodes/" + updatedQrCodeId + "/edit";
     }
 
     /*

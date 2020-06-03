@@ -1,5 +1,6 @@
 package kr.qr24.domain;
 
+import kr.qr24.dto.qrcode.EditQrCodeForm;
 import lombok.*;
 
 import javax.persistence.*;
@@ -75,6 +76,14 @@ public class QrCode {
         QRCode.setQrCodeType(qrCodeType);
         QRCode.setCreatedAt(LocalDateTime.now());
         return QRCode;
+    }
+
+    /*
+        정보 수정
+     */
+    public void update(EditQrCodeForm editQrCodeForm) {
+        this.managerName = editQrCodeForm.getManagerName();
+        this.managerPhoneNumber = editQrCodeForm.getManagerPhoneNumber();
     }
 
 }

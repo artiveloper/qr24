@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='XXXXX | QR24')"></head>
+
+<body>
+    <div th:replace="fragments/navbar"></div>
+
+    <div class="container mt-3">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+
+                <h3>QR코드 정보</h3>
+
+                <hr/>
+
+                <div th:if="${updated}"
+                     class="alert alert-info"
+                >
+                    정보가 수정되었습니다.
+                </div>
+
+                <form th:action="@{'/qrcodes/' + ${editQrCodeForm.id} + '/edit'}" th:object="${editQrCodeForm}" th:method="post">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label">상호명(회사명)</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="name" th:field="*{name}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="postcode" class="col-sm-3 col-form-label">우편번호</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="postcode" th:field="*{postcode}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="roadAddress" class="col-sm-3 col-form-label">도로명 주소</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="roadAddress" th:field="*{roadAddress}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="jibunAddress" class="col-sm-3 col-form-label">지번 주소</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="jibunAddress" th:field="*{jibunAddress}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="detailAddress" class="col-sm-3 col-form-label">상세 주소</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="detailAddress" th:field="*{detailAddress}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="extraAddress" class="col-sm-3 col-form-label">참고항목</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="extraAddress" th:field="*{extraAddress}">
+                        </div>
+                    </div>
+
+                    <div th:if="${editQrCodeForm.qrCodeTypeId == 2}"
+                            class="form-group row">
+                        <label for="carNumber" class="col-sm-3 col-form-label">차량 번호</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="carNumber" th:field="*{carNumber}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="businessNumber" class="col-sm-3 col-form-label">사업자번호</label>
+                        <div class="col-sm-9">
+                            <input type="text" readonly class="form-control" id="businessNumber" th:field="*{businessNumber}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="managerName" class="col-sm-3 col-form-label">담당자 성함</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="managerName" th:field="*{managerName}">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="managerPhoneNumber" class="col-sm-3 col-form-label">담당자 연락처</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="managerPhoneNumber" th:field="*{managerPhoneNumber}">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-block btn-primary">수정 완료</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/script"></div>
+
+</body>
+</html>
