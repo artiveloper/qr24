@@ -37,7 +37,7 @@
                     <td th:text="${qrCode.name}">상호명(회사명)</td>
                     <td th:text="${qrCodes[0].qrCodeTypeId == 2 ? qrCode.carNumber : qrCode.roadAddress}">주소(도로명)</td>
                     <td>
-                        <a class="btn btn-sm btn-info" th:href="@{'/qrcodes/' + ${qrCode.id}}" role="button">QR코드 바로보기</a>
+                        <a class="btn btn-sm btn-info" th:href="@{'/qrcodes/' + ${qrCode.id} + '/print'}" role="button">QR코드 바로보기</a>
                         <a class="btn btn-sm btn-primary" href="#" role="button">수정</a>
                         <a class="btn btn-sm btn-danger" href="#" role="button">삭제</a>
                     </td>

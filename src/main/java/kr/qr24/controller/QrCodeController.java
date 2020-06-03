@@ -49,6 +49,16 @@ public class QrCodeController {
     }
 
     /*
+        QR코드 프린트 페이지
+     */
+    @GetMapping("/qrcodes/{qrCodeId}/print")
+    public String printQrCodePage(@PathVariable Long qrCodeId, Model model) {
+        QrCodeResponseDto qrCode = qrCodeService.getQrCode(qrCodeId);
+        model.addAttribute("qrCode", qrCode);
+        return "qrcodes/print";
+    }
+
+    /*
         매장 등록
      */
     @PostMapping("/qrcodes")
