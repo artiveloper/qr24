@@ -2,9 +2,11 @@ package kr.qr24.dto.qrcode;
 
 import kr.qr24.domain.QrCode;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
 @Data
 public class QrCodeResponseDto {
 

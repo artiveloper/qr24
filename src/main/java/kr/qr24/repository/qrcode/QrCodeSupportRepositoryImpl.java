@@ -2,6 +2,7 @@ package kr.qr24.repository.qrcode;
 
 import kr.qr24.domain.QQrCode;
 import kr.qr24.domain.QQrCodeType;
+import kr.qr24.domain.QUser;
 import kr.qr24.domain.QrCode;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
@@ -32,6 +33,15 @@ public class QrCodeSupportRepositoryImpl extends QuerydslRepositorySupport imple
                 .fetchJoin()
                 .where(qrCode.id.eq(storeId))
                 .fetchOne();
+    }
+
+    public void deleteQrCode(Long userId, Long qrCodeId) {
+        final QQrCode qrCode = QQrCode.qrCode;
+
+        delete(qrCode)
+                .where(qrCode.id.eq(qrCodeId))
+                .where(qrCode.user.id.eq(qrCodeId))
+                .execute();
     }
 
 }

@@ -14,10 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -74,7 +71,7 @@ public class QrCodeController {
     }
 
     /*
-        매장 등록
+        QR코드 등록
      */
     @PostMapping("/qrcodes")
     public String registerStore(
@@ -113,13 +110,22 @@ public class QrCodeController {
         if (errors.hasErrors()) {
             return "qrcodes/visit";
         }
-        System.out.println(visitorFormRequest);
         return "redirect:/qrcodes/visit-result";
     }
 
     @GetMapping("/qrcodes/visit-result")
     public String result() {
         return "qrcodes/visit-result";
+    }
+
+    /*
+        QR코드 삭제
+     */
+    @DeleteMapping("/qrcodes/{qrCodeId}/delete")
+    public String deleteQrCode(@AuthenticationPrincipal CustomUser currentUser, @PathVariable Long qrCodeId, RedirectAttributes redirectAttributes) {
+        qrCodeService.deleteQrCode(currentUser.getId(), qrCodeId);
+        redirectAttributes.addFlashAttribute("deleteMessage", true);
+        return "redirect:/";
     }
 
 }

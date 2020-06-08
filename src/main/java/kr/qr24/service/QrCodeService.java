@@ -74,4 +74,9 @@ public class QrCodeService {
         return qrCode.getId();
     }
 
+    @Transactional
+    public void deleteQrCode(Long userId, Long qrCodeId) {
+        qrCodeRepository.deleteQrCode(userId, qrCodeId);
+    }
+
 }

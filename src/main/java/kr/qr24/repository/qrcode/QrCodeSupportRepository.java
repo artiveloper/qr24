@@ -10,4 +10,6 @@ public interface QrCodeSupportRepository {
 
     QrCode findQrCodeWithType(Long storeId);
 
+    void deleteQrCode(Long userId, Long qrCodeId);
+
 }
