@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/users/sign-in")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/dashboard", true);
 
         http.rememberMe()
                 .userDetailsService(userService)

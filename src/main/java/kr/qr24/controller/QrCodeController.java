@@ -87,7 +87,7 @@ public class QrCodeController {
         }
         Long userId = currentUser.getId();
         qrCodeService.registerQrCode(userId, registerQrCodeFormRequest);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
     /*
@@ -125,7 +125,7 @@ public class QrCodeController {
     public String deleteQrCode(@AuthenticationPrincipal CustomUser currentUser, @PathVariable Long qrCodeId, RedirectAttributes redirectAttributes) {
         qrCodeService.deleteQrCode(currentUser.getId(), qrCodeId);
         redirectAttributes.addFlashAttribute("deleteMessage", true);
-        return "redirect:/";
+        return "redirect:/dashboard";
     }
 
 }

@@ -7,7 +7,7 @@
         <nav class="navbar navbar-expand-lg navbar-light px-0">
             <a class="navbar-brand" th:href="@{/}">QR24</a>
 
-            <ul class="nav ml-auto">
+            <ul class="nav ml-auto" sec:authorize="isAuthenticated()">
                 <li class="nav-item my-auto mx-1">
                     <a class="btn btn-sm btn-primary" th:href="@{/qrcodes/new}">QR코드 생성</a>
                 </li>
@@ -17,12 +17,22 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!--<a class="dropdown-item" th:href="@{'/users/' + ${#authentication.principal.id}}">프로필</a>-->
-                        <a class="dropdown-item" th:text="${#authentication.name}">이메일</a>
+                        <!--<a class="dropdown-item" th:text="${#authentication.name}">이메일</a>-->
+                        <a class="dropdown-item" th:href="@{/dashboard}">대시보드</a>
                         <div class="dropdown-divider"></div>
                         <form th:action="@{/users/logout}" th:method="post">
                             <button class="dropdown-item" type="submit">로그아웃</button>
                         </form>
                     </div>
+                </li>
+            </ul>
+
+            <ul class="nav ml-auto" sec:authorize="!isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" th:href="@{/users/sign-in}">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" th:href="@{/users/sign-up}">회원가입</a>
                 </li>
             </ul>
         </nav>

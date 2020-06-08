@@ -51,3 +51,7 @@ body {
 #inputCarNumberContainer {
     display: none;
 }
+
+.main-images {
+    width: 250px !important;
+}
