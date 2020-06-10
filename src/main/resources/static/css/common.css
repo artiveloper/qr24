@@ -55,3 +55,7 @@ body {
 .main-images {
     width: 250px !important;
 }
+
+.hero-description {
+    line-height: 2rem;
+}
